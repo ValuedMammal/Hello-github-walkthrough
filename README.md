@@ -40,7 +40,7 @@ git-cli cheatsheet
   - Fill out your bio in your profile settings
   - Verify your email
   - Explore recent topics in a news feed style from the main page
-  - Search for a project:
+  - Search for a project:  
   For example searching "bitcoin" can take you either to bitcoin/bitcoin or bitcoin/bips. The former is where the bitcoin code lives, while bitcoin/bips contains written proposals for bitcoin improvements. When you've landed in a repo there are plenty of things to do even as a passive observer. The README is usually a good place to start for a high level overview of a project. From there you can read about issues, review active pull requests, and look at source code. The insights tab contains useful statistics and history for the project. Along the right sidebar we can see a breakdown of the languages used in the project. A useful thing to know is where to find the release notes for the version of the software you're using which might also come in the form of a changelog. Before we leave a repo we can click the button that says Watch which will allow us to customize the types of notifications we want to receive. As you'd imagine, notifications for repos we follow can be found by clicking the bell icon in the top right corner of the page.
   
   Other bitcoin related repos to explore include lightning/bolts, lightningnetwork/lnd, and ElementsProject/lightning. Interestingly, people have used github to write entire books which for multiple authors can be a good way to collaborate. The beloved Mastering Bitcoin and Mastering Lightning books can be found in the repos bitcoinbook/ and lnbook/ respectively.
@@ -58,27 +58,33 @@ Hello World guide
 3. Authenticate
   The two primary means of authenticating users is by way of GPG and SSH. The act of authenticating, or proving a user is who they say they are, occurs any time an author commits a change to a repository. It also occurs when new versions are released for download. It's important we know that the software we're using is made available as it was intended by the developer. This is done by signing commits with private key and the subsequent verification of the signature by the outside world.
   
-  GPG is easy to set up on mac with GPGTools which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command
+  GPG is easy to set up on mac with GPGTools which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command  
   `gpg --generate-key`
  
-   (put cmd snippets on new lines) We need to share the public key with github. To do so we will locate the raw public key block text and copy it to the appropriate box in your personal profile settings. First, get the gpg key ID for the keypair we just created. 
+   (put cmd snippets on new lines) We need to share the public key with github. To do so we will locate the raw public key block text and copy it to the appropriate box in your personal profile settings. First, get the gpg key ID for the keypair we just created.  
   `gpg --list-secret-keys --keyid-format=long` 
    
-  The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is 2CB55EE5DB7241BA. You would substitute your own key id below where it says <your-key-id>. Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs at https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
+  The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is 2CB55EE5DB7241BA. You would substitute your own key id below where it says <your-key-id>. Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs at https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key  
   `gpg --armor --export <your-key-id>` 
   
-  Now we will do the same for our SSH key. Copy your SSH key to your github profile settings, or create one if you haven't yet done so. There are a variety of settings you can apply to new keys. To keep it simple we'll use the key attributes recommended by github. You'll want to include the email associated with your github account. Using a passphrase with your ssh key is optional but recommended.
+  Now we will do the same for our SSH key. Copy your SSH key to your github profile settings, or create one if you haven't yet done so. There are a variety of settings you can apply to new keys. To keep it simple we'll use the key attributes recommended by github. You'll want to include the email associated with your github account. Using a passphrase with your ssh key is optional but recommended.  
   `ssh-keygen -t ed25519 -C "your_email@example.com"`
   
-  Your ssh keypair should now be located at the file ~/.ssh/id_ed25519.pub by default. Return the contents of the file and copy/paste it to your github settings. The private key does not carry the .pub extension and should be kept secret. See the github docs for help https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh
+  Your ssh keypair should now be located at the file ~/.ssh/id_ed25519.pub by default. Return the contents of the file and copy/paste it to your github settings. The private key does not carry the .pub extension and should be kept secret. See the github docs for help https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh  
   `cat ~/.ssh/id_ed25519.pub`
   
   For a greater degree of security, you might choose to generate and store keys on a hardware security key such as a yubikey or similar. Some good information on this can be found at (here--add resource). In short it would look something like inserting the security key to your machine, using the command `gpg --edit-card`, and using the admin functions to generate a new key.
   
 4. Learn git
-  
+  - clone our repo, global configs
+  - add and commit
+  - push to origin
+  - create a branch and merge w main
+  - pull new changes from origin  
+  These are simplified examples meant to demonstrate the concepts. In practice repos may contain complex file structures, and changes consist of code, scripts, and libraries, not just text. What's important is the general workflow
+ 
 5. Forks and Pull Requests
-  
+  What if we want to submit a change to a repo of which we're not an authorized maintainer?
 6. Stay Involved
   
   
