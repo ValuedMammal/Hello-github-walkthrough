@@ -1,4 +1,4 @@
-# Hello Github 
+# Hello Github - Walkthrough and Challenge
 
 Here is a beginner github repository that serves as an introduction and quick walkthrough for anyone getting started with github. Things can be slightly intimidating if you are not yet familiar with all the features github has to offer, but if we can get a grasp on some of the key concepts, that will go a long way to demystifying the complexities and allow us to confidently move along the learning curve at our own pace.
 
@@ -11,26 +11,62 @@ Because bitcoin is open source, all the code is available for anyone with the in
 
 
 Contents
-- set up user account, find friends
-- learn how to authenticate
-- your first repo
-- learn git: clone, commit, push, pull
+1. set up user account, find friends
+2. your first repo
+3. learn how to authenticate
+4. learn git: clone, commit, push, pull
   commits should be complete and self-contained, so they can be easily reverted w/o interferring with other features.
-- make a pull request, issues, code review, and discussion
+5. make a pull request, issues, code review, and discussion
   types of issues: bugs or unexpected behavior, feature req
   link a pr back to the issue
   clarity and descriptive is paramount. be verbose and give rationale for decisions
-- stay involved
+6. stay involved
   manage subscriptions, track ongoing changes
 
 0. Why write this?
 Help docs already exist. also video walkthroughs by fCC. the goal is to show off that i know how to use github but thats not very valuable to others. it needs to be simple enough to act as a quick intro to github to save people time scouring the help docs. still nothing beats a vid tutorial. The purpose is to get you from zero to self-sufficient in under an hour.
 
 links:
-gpg and ssh
+gpgtools
+ssh
 github help docs
 fCC video tut
 computerphile videos
+git-cli cheatsheet
 
 1. Set up
-Getting started with Github is easy if you treat it like another social media site in the sense that you sign up with an email, pick a username, and customize your profile.
+  Getting started with Github is easy if you treat it like another social media site in the sense that you sign up with an email, pick a username, and customize your profile.
+  Note: the commands in this guide are written for mac users, so be sure to use the commands applicable to your own system.
+
+2. Your first repo
+
+3. Authenticate
+  The two primary means of authenticating users is by way of GPG and SSH. The act of authenticating, or proving a user is who they say they are, occurs any time an author commits a change to a repository. It also occurs when new versions are released for download. It's important we know that the software we're using is made available as it was intended by the developer. This is done by signing commits with private key and the subsequent verification of the signature by the outside world.
+  
+  GPG is easy to set up on mac with GPGTools which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command
+  `gpg --generate-key`
+ 
+   We need to share the public key with github. To do so we will locate the raw public key block text and copy it to the appropriate box in your personal profile settings. First, get the gpg key ID for the keypair we just created. 
+  `gpg --list-secret-keys --keyid-format=long` 
+   
+  The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is 2CB55EE5DB7241BA. You would substitute your own key id below where it says <your-key-id>. Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs at https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
+  `gpg --armor --export <your-key-id>` 
+  
+  Now we will do the same for our SSH key. Copy your SSH key to your github profile settings, or create one if you haven't yet done so. There are a variety of settings you can apply to new keys. To keep it simple we'll use the key attributes recommended by github. You'll want to include the email associated with your github account. Using a passphrase with your ssh key is optional but recommended.
+  `ssh-keygen -t ed25519 -C "your_email@example.com"`
+  
+  Your ssh keypair should now be located at the file ~/.ssh/id_ed25519.pub by default. Return the contents of the file and copy/paste it to your github settings. The private key does not carry the .pub extension and should be kept secret. See the github docs for help https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh
+  `cat ~/.ssh/id_ed25519.pub`
+  
+  For a greater degree of security, you might choose to generate and store keys on a hardware security key such as a yubikey or similar. Some good information on this can be found at (here--add resource). In short it would look something like inserting the security key to your machine, using the command `gpg --edit-card`, and using the admin functions to generate a new key.
+  
+  4.
+  
+  
+  
+  
+  
+  
+  
+  
+  
