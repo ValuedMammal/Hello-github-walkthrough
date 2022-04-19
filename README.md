@@ -10,13 +10,13 @@ In 2017 I became interested in bitcoin for both its financial and technical qual
 Because bitcoin is open source, all the code is available for anyone with the inclination and fortitude to explore it, and that is where Github comes in. Github is a code repository, that is, where code lives for all sorts of projects and applications, not only bitcoin of course. Github allows collaboration from developers around the world and the ability to have eyes on the same code that resides safely in the cloud. But importantly github also acts as a version control system where different versions can exist for one piece of software. Often a project will consist of a main or master branch of the code, while one or more parallel versions of the code can be developed on auxillary branches. This is important for allowing new and experimental features to be built and tested on a separate branch before being formally integrated, or merged, into the main branch. At a high level these are some of the concepts we'll learn throughout the guide, and of course, it is meant to grow and evolve to accommodate new insights.
 
 
-Contents
+Contents (create anchor links for these)
 1. set up user account, find friends
 2. your first repo
 3. learn how to authenticate
 4. learn git: clone, commit, push, pull
   commits should be complete and self-contained, so they can be easily reverted w/o interferring with other features.
-5. make a pull request, issues, code review, and discussion
+5. make a fork, pull request, issues, code review, and discussion
   types of issues: bugs or unexpected behavior, feature req
   link a pr back to the issue
   clarity and descriptive is paramount. be verbose and give rationale for decisions
@@ -30,15 +30,30 @@ links:
 gpgtools
 ssh
 github help docs
+github hello world tut
 fCC video tut
 computerphile videos
 git-cli cheatsheet
 
 1. Set up
-  Getting started with Github is easy if you treat it like another social media site in the sense that you sign up with an email, pick a username, and customize your profile.
-  Note: the commands in this guide are written for mac users, so be sure to use the commands applicable to your own system.
+  Getting started with Github is easy if you treat it like another social media site in the sense that you sign up with an email, pick a username, and customize your profile. You can follow people, watch other projects, and even get notified of new activity on the projects and discussions you're interested in. To get acquainted you might try some of the following:
+  - Fill out your bio in your profile settings
+  - Verify your email
+  - Explore recent topics in a news feed style from the main page
+  - Search for a project:
+  For example searching "bitcoin" can take you either to bitcoin/bitcoin or bitcoin/bips. The former is where the bitcoin code lives, while bitcoin/bips contains written proposals for bitcoin improvements. When you've landed in a repo there are plenty of things to do even as a passive observer. The README is usually a good place to start for a high level overview of a project. From there you can read about issues, review active pull requests, and look at source code. The insights tab contains useful statistics and history for the project. Along the right sidebar we can see a breakdown of the languages used in the project. A useful thing to know is where to find the release notes for the version of the software you're using which might also come in the form of a changelog. Before we leave a repo we can click the button that says Watch which will allow us to customize the types of notifications we want to receive. As you'd imagine, notifications for repos we follow can be found by clicking the bell icon in the top right corner of the page.
+  
+  Other bitcoin related repos to explore include lightning/bolts, lightningnetwork/lnd, and ElementsProject/lightning. Interestingly, people have used github to write entire books which for multiple authors can be a good way to collaborate. The beloved Mastering Bitcoin and Mastering Lightning books can be found in the repos bitcoinbook/ and lnbook/ respectively.
+  
+  As we move on do note that the commands in this guide are written for mac users, so be sure to use the commands applicable to your own system.
 
 2. Your first repo
+Hello World guide
+- create and name a repo
+- edit the README.md file
+- commit changes
+
+  Some of the frequent actions we can take regarding repos are to create forks, branches, and pull requests. But before we get there, we need to get set up with authentication keys. 
 
 3. Authenticate
   The two primary means of authenticating users is by way of GPG and SSH. The act of authenticating, or proving a user is who they say they are, occurs any time an author commits a change to a repository. It also occurs when new versions are released for download. It's important we know that the software we're using is made available as it was intended by the developer. This is done by signing commits with private key and the subsequent verification of the signature by the outside world.
@@ -46,7 +61,7 @@ git-cli cheatsheet
   GPG is easy to set up on mac with GPGTools which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command
   `gpg --generate-key`
  
-   We need to share the public key with github. To do so we will locate the raw public key block text and copy it to the appropriate box in your personal profile settings. First, get the gpg key ID for the keypair we just created. 
+   (put cmd snippets on new lines) We need to share the public key with github. To do so we will locate the raw public key block text and copy it to the appropriate box in your personal profile settings. First, get the gpg key ID for the keypair we just created. 
   `gpg --list-secret-keys --keyid-format=long` 
    
   The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is 2CB55EE5DB7241BA. You would substitute your own key id below where it says <your-key-id>. Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs at https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
@@ -60,7 +75,12 @@ git-cli cheatsheet
   
   For a greater degree of security, you might choose to generate and store keys on a hardware security key such as a yubikey or similar. Some good information on this can be found at (here--add resource). In short it would look something like inserting the security key to your machine, using the command `gpg --edit-card`, and using the admin functions to generate a new key.
   
-  4.
+4. Learn git
+  
+5. Forks and Pull Requests
+  
+6. Stay Involved
+  
   
   
   
