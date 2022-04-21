@@ -11,7 +11,7 @@ Because bitcoin is open source, all the code is available for anyone with the in
 
 
 ## Contents (create anchor links for these)
-1. set up user account, find friends (#setup)
+1. [Set up user account](#setup)
 2. your first repo
 3. learn how to authenticate
 4. learn git: clone, commit, push, pull
@@ -42,6 +42,7 @@ git-cli cheatsheet
   - Verify your email
   - Explore recent topics in a news feed style from the main page
   - Search for a project:  
+
   For example searching "bitcoin" can take you either to bitcoin/bitcoin or bitcoin/bips. The former is where the bitcoin code lives, while bitcoin/bips contains written proposals for bitcoin improvements. When you've landed in a repo there are plenty of things to do even as a passive observer. The README is usually a good place to start for a high level overview of a project. From there you can read about issues, review active pull requests, and look at source code. The insights tab contains useful statistics and history for the project. Along the right sidebar we can see a breakdown of the languages used in the project. A useful thing to know is where to find the release notes for the version of the software you're using which might also come in the form of a changelog. Before we leave a repo we can click the button that says Watch which will allow us to customize the types of notifications we want to receive. As you'd imagine, notifications for repos we follow can be found by clicking the bell icon in the top right corner of the page.
   
   Other bitcoin related repos to explore include lightning/bolts, lightningnetwork/lnd, and ElementsProject/lightning. Interestingly, people have used github to write entire books which for multiple authors can be a good way to collaborate. The beloved Mastering Bitcoin and Mastering Lightning books can be found in the repos bitcoinbook/ and lnbook/ respectively.
@@ -50,7 +51,7 @@ git-cli cheatsheet
 
 ## 2. Your first repo
 
-Hello World guide
+  This section is essentially the same as the Hello World guide(link) found in Github's help documentation, so feel free to have a look at that or simply continue on.
 
   Go ahead and create a new repository and name it hello-world. You can choose to make it public or private, and the rest of the default settings should be fine. Now that we're in the new repo, you can edit the README.md by clicking the pencil icon. The extension '.md' stands for markdown which defines the formatting for the text file. Write a short blurb in the body of the document. When you're ready to save, scroll down to the section that says 'commit changes.' It's important to fill in both the title and the body of the commit message. If you leave the title blank, it will default to 'update README.md,' however this is not very descriptive. If in the future we want to look at the history of past commits, it will be much easier to see at a glance what has changed if we write a descriptive title. So if nothing else, describe the commit in the title, and if necessary, give a more detailed explanation in the body of the commit message. Since this particular instance is a trivial example, you can leave the title as is or call it something like 'Added a body paragraph.' Now you're ready to click the green commit button, and you should see the README has now been updated.  
 
@@ -61,18 +62,23 @@ Hello World guide
   The two primary means of authenticating users on github is by way of GPG and SSH. The act of authenticating, or proving a user is who they say they are, occurs any time an author commits a change to a repository. It also occurs when new versions are released for download. It's important we know that the software we're using is made available as it was intended by the developer. This is done by signing commits with a private key and the subsequent verification of the signature by the outside world.
   
   GPG is easy to set up on mac with GPGTools(link) which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command  
+
   `gpg --generate-key`
  
   We need to share the public key with github. To do so we will locate the raw public key block text and copy it to the appropriate box in your personal profile settings. First, get the gpg key ID for the keypair we just created.  
+
   `gpg --list-secret-keys --keyid-format=long` 
    
   The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is '2CB55EE5DB7241BA.' You would substitute your own key id below where it says <your-key-id>. Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs at https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key  
+
   `gpg --armor --export <your-key-id>` 
   
   Now we will do the same for our SSH key. Copy your SSH key to your github profile settings, or create one if you haven't yet done so. There are a variety of settings you can apply to new keys. To keep it simple we'll use the key attributes recommended by github. You'll want to include the email associated with your github account. Using a passphrase with your ssh key is optional but recommended.  
+
   `ssh-keygen -t ed25519 -C "your_email@example.com"`
   
   Your ssh key should now be located at the file ~/.ssh/id_ed25519.pub by default. Return the contents of the file and copy/paste it to your github settings. Note: the private key does not carry the .pub extension and should be kept secret. See the github docs for help https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh  
+
   `cat ~/.ssh/id_ed25519.pub`
   
   For a greater degree of security, you might choose to generate and store keys on a hardware security key such as a yubikey or similar. Some good information on this can be found at (here--add resource). In short it would look something like inserting the security key to your machine, using the command `gpg --edit-card`, and using the admin functions to generate a new key.
@@ -84,12 +90,13 @@ Hello World guide
   - add and commit
   - push to origin
   - create a branch and merge w main. we can merge using git, or we can go back to github and create a pr.
-  - pull new changes from origin (optional advanced challenge - edit remote repo, pull to the feature branch, then merge to master.)
-  At this point we are ready to use 'git' from the terminal on your local machine. Git, from which the name github derives, is simply a program for tracking changes in a set of files usually for the purpose of collaborating among developers. This concept is at the core of what we're learning in this guide. First check that git is installed. If not, the easiest way to install git on a mac is probably to go ahead and install the XCode Command Line Tools. If the following command returns an error, you may be prompted to install this package of utilities after which git will be ready to use.  
+  - pull new changes from origin (optional advanced challenge - edit remote repo, pull to the feature branch, then merge to master.)  
+
+  At this point we are ready to use 'git' from the terminal on your local machine. Git, from which the name github derives, is simply a program for tracking changes in a set of files usually for the purpose of collaborating among developers. This concept is at the core of what we're learning in this guide. First check that git is installed. If not, the easiest way to install git on a mac is probably to go ahead and install the XCode Command Line Tools. If the following command returns an error, you may be prompted to install a package of utilities after which git will be ready to use.  
 
   `git --version`  
 
-  Like most programs `git help` will show a synopsis of common commands, and `man git` brings you to the manual containing in-depth reference material. But all that's needed presently is for us to clone the hello-world repo we created earlier and reproduce the contents locally. Assuming you set up your SSH keys, we can perform a 'git clone' using SSH. Go back to github on the web. On the main page of yourUsername/hello-world you should see the button 'Code' with a drop down menu. Click it and select the SSH option. The text box should look like, git@github.com:yourUsername/hello-world.git. Copy that and paste it after 'git clone' in the terminal. Note: the other two options HTTPS and Github CLI are alternative ways of doing the same thing, that is to clone the remote repo, but won't be covered here.  
+  Like most programs `git help` will show a synopsis of common commands, and `man git` brings you to the manual containing in-depth reference material. But all that's needed presently is for us to clone the hello-world repo we created earlier and reproduce the contents locally. Assuming you set up your SSH keys, we can perform a 'git clone' using SSH. Go back to github on the web. On the main page of yourUsername/hello-world you should see the button 'Code' with a drop down menu. Click it and select the SSH option. The text box should look like, git@githubdotcom:yourUsername/hello-world.git. Copy that and paste it after 'git clone' in the terminal. Note: the other two options HTTPS and Github CLI are alternative ways of doing the same thing, that is to clone the remote repo, but won't be covered here.  
 
   `git clone git@github.com:yourUsername/hello-world.git`  
 
@@ -103,24 +110,31 @@ Hello World guide
 
   `git commit -m "your title" -m "your description, optional"`
 
-  Remember to include at least one comment using the -m flag for message. The local hello-world repo has now advanced to the new state. To update the remote repo we push the changes.  
+  Remember to include at least one comment using the -m flag for message. Note: when making your first commit, git will assign the identity associated with your machine as the author of the commit. To make sure this identity matches the owner of the repo you created on github you can check git's global config file with `git config --edit --global` and make any changes to the name and email fields. The local hello-world repo has now advanced to the new state. To update the remote repo we can push the changes.  
 
   `git push origin main`
 
-  Here origin refers to the same location of the remote repo we used to clone from, and main is the default branch of which there is currently only one. You may also see the main branch designated the master branch.
+  Here origin refers to the same location of the remote repo we used to clone from, and main is the default branch of which there is currently only one. You may also see the main branch designated the master branch. For the sake of demonstration let us now create a new branch, add some changes, and merge it into the main branch. There are several ways to create a new branch, but for simplicity we will create a new branch and switch to it in one step by using 'checkout.' The branch will be called feature. 
 
+`git checkout -b feature`  
 
-  When making your first commit, git will assign the identity associated with your machine to the commit. To make sure this identity matches the owner of the repo you created on github you can check git's global config file and make any changes to the name and email fields.  
+  Check that you have successfully switched to the newly created feature branch with `git branch`. You should see feature is highlighted. As you'd imagine, any changes we make to the README while on the feature branch will not carry over to the main branch until we are ready to do the merge. Open README.md with a text editor and add a new line with anything that will distinguish it from the main branch. When you're done editing, save and quit. Do a 'git add' like before followed by 'git commit' to commit the change on branch 'feature.'
 
-  `git config --edit --global`  
+  From here we can go one of two ways. We can merge the feature branch into main from the command line with `git merge feature`. However, I think it would be valuable to revisit github on the web to see the merge in action graphically. To do that, we need to push the feature branch to the remote repo. But recall that hello-world currently only has a main branch on github. Therefore we need to specify the upstream repo where feature will live by passing the -u flag to 'git push.'  
 
-  These are simplified examples meant to demonstrate the concepts. In practice repos may contain complex file structures, and changes consist of code, scripts, and libraries, not just text. What's important is the general workflow
- 
+  `git push -u origin feature`  
+
+  Great. Now head over to github and refresh the page. If you made it this far, then you should see a notice that feature has been pushed along with an option to compare and create a pull request (PR). If we follow the option to make a PR, we see the commit message we made for feature, and scrolling down can we see the diffs. The diff is a side-by-side representation of the old and new file contents. Intuitively, we see that lines that were removed, if any, are highlighted red, while newly created lines are green. Of note is a handy diff notation that might look something like this: @@ -1,3 +1,5 @@  
+
+  The diff notation tells us we're looking at line 1 on the -old (main) file containing 3 lines, and the +new (feature) file also beginning at line 1 and containing 5 lines. If we are ready to move forward we can accept the PR and merge the changes into main. Once complete it is typical to delete the feature branch now that changes have been merged.  
+   
+  CHALLENGE: Sometimes when working on another branch we may wish to incorporate recent changes made on the master branch in order to keep our branch current. Normally a simple 'git pull' would bring the local repo up to date with the remote repo, but for this challenge, we first want to pull changes from the main branch down to our local feature branch, and then proceed to merge the two as in the previous example. To do this, create a feature branch from the terminal like before and make changes. Then go back to gitub on the web and make an edit to the main branch. How would you go about pulling the change from main to your feature branch while retaining the work you've done on feature?  
+
 ## 5. Forks and Pull Requests
 
-  What if we want to submit a change to a repo of which we're not an authorized maintainer?
+  The benefit of making PRs is that it allows for review and discussion from your colleagues. When there are many eyes on the code, it may take a number of revisions of the PR before changes are finally committed. If you are only making edits to the README in your own hello-world repo, it's probably not necessary to open a pull request as you don't need others to approve it. But what if we want to propose a change to a project of which we're not an owner or maintainer? For that we use forks. When we fork a repository that belongs to someone else, we create an exact copy to which we can make changes without interfering with the original base repo. The ability to fork a project in one click allows other groups to design custom implementations of open source projects in order to suit their specific needs. Find a project on github and you'll see the button to fork the repo. You will then have a copy of it your own profile to play with. At any time you can compare the current head of your fork against the upstream repo and even fetch updates from the upstream repo to merge into your own fork.
 
-  Challenge: fork this repo containing the README.md file (that you're reading now). Make an edit in your new forked repo, commit the change, and finally open a PR proposing to merge the change into the base or upstream repo.
+  CHALLENGE: See something in this guide that could use improvement? Fork this project, ValuedMammal/Hello-Github-Walkthrough, containing the README.md file. Make an edit in your new forked repo, commit the change, and finally open a PR proposing to merge the change into the base. Remember to use descriptive commit messages and keep changes discreet and self-contained rather than cramming a lot of unrelated things into one PR. Magic can happen when we collaborate.  
 
 ## 6. Stay Involved
 
