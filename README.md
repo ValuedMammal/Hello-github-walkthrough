@@ -22,13 +22,13 @@ Because bitcoin is open source, all the code is available for anyone with the in
 * Why write this guide when Github's help docs already exist? Because, this guide ecompasses the essentials of getting started while also being interactive and following a natural progression. Completing the tutorial prevents you from having to scour through the docs not knowing where to start. The purpose is to get you from zero to self-sufficient in one hour of study.  
 
 ## Resources used in this guide:  
-[Hello World guide](#https://docs.github.com/en/get-started/quickstart/hello-world)  
-[GPGTools](#https://gpgtools.org)  
-[generating a gpg key](#https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
-[help with SSH](#https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)  
-[introduction to git is this video](#https://www.youtube.com/watch?v=lJu5xwbGgRk)  
-[git cheat sheet](#https://training.github.com/downloads/github-git-cheat-sheet/)  
-[popular video tutorial](#https://www.youtube.com/watch?v=RGOj5yH7evk&t=3389s)  
+[Hello World guide](https://docs.github.com/en/get-started/quickstart/hello-world)  
+[GPGTools](https://gpgtools.org)  
+[generating a gpg key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
+[help with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)  
+[introduction to git is this video](https://www.youtube.com/watch?v=lJu5xwbGgRk)  
+[git cheat sheet](https://training.github.com/downloads/github-git-cheat-sheet/)  
+[popular video tutorial](https://www.youtube.com/watch?v=RGOj5yH7evk&t=3389s)  
 
 ## 1. [Set up](#setup)
 
@@ -49,7 +49,7 @@ As we move on, do note that the commands in this guide are written for mac users
 
 ## 2. [Your First Repo](#hello)
 
-This section is essentially the same as the [Hello World guide](#https://docs.github.com/en/get-started/quickstart/hello-world) found in Github's help documentation, so feel free to have a look at that while we go along.  
+This section is essentially the same as the [Hello World guide](https://docs.github.com/en/get-started/quickstart/hello-world) found in Github's help documentation, so feel free to have a look at that while we go along.  
 
   1) Go ahead and create a new repository and name it hello-world. You can choose to make it public or private, and the rest of the default settings should be fine.  
 
@@ -65,7 +65,7 @@ Some of the common actions we can take regarding repos are to create forks, bran
 
   The two primary means of authenticating users on github are with GPG and SSH. The act of authenticating, or proving a user is who they say they are, occurs any time an author commits a change to a repository. It also occurs when new versions are released for download. It's important we know that the software we're using is made available as it was intended by the developer. This is done by signing commits with a private key and the subsequent verification of the signature by the outside world.  
   
-  GPG is easy to set up on mac with [GPGTools](#https://gpgtools.org) which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command  
+  GPG is easy to set up on mac with [GPGTools](https://gpgtools.org) which offers a graphical interface for managing gpg keys. You can also generate a new key from a terminal using the command  
 
   `gpg --generate-key`
  
@@ -73,7 +73,7 @@ Some of the common actions we can take regarding repos are to create forks, bran
 
   `gpg --list-secret-keys --keyid-format=long` 
    
-  The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is '2CB55EE5DB7241BA.' You would substitute your own key id below where it says <your-key-id>. Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs for [generating a gpg key](#https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
+  The key id consists of the last 16 characters of the full key fingerprint. Next, we'll export the public key in a block of text. For example, the id for the gpg key I'm using is '2CB55EE5DB7241BA.' You would substitute your own key id below where it says 'your-key-id.' Paste the entire output including the beginning and ending tags to the empty text box on github. For more info, visit the help docs for [generating a gpg key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
 
   `gpg --armor --export <your-key-id>`  
   
@@ -81,7 +81,7 @@ Some of the common actions we can take regarding repos are to create forks, bran
 
   `ssh-keygen -t ed25519 -C "your_email@example.com"`  
   
-  Your ssh key should now be located at the file ~/.ssh/id_ed25519.pub by default. Return the contents of the file and copy/paste it to your github settings. Note: the private key does not carry the .pub extension and should be kept secret. See the github docs for [help with SSH](#https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)  
+  Your ssh key should now be located at the file ~/.ssh/id_ed25519.pub by default. (Don't overwrite a key if it already exists!) Return the contents of the file and copy/paste it to your github settings. Note: the private key does not carry the .pub extension and should be kept secret. See the github docs for [help with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)  
 
   `cat ~/.ssh/id_ed25519.pub`  
   
@@ -89,7 +89,7 @@ Some of the common actions we can take regarding repos are to create forks, bran
   
 ## 4. [Learn git](#git) 
 
-  At this point we are ready to use 'git' from the terminal on our local machine. Git, from which the name github derives, is simply a program for tracking changes in a set of files usually for the purpose of collaborating among developers. This concept is at the core of what we're learning in this guide. A good [introduction to git is this video](#https://www.youtube.com/watch?v=lJu5xwbGgRk) by the Computerphile YouTube channel that I encourage you to watch.  
+  At this point we are ready to use 'git' from the terminal on our local machine. Git, from which the name github derives, is simply a program for tracking changes in a set of files usually for the purpose of collaborating among developers. This concept is at the core of what we're learning in this guide. A good [introduction to git is this video](https://www.youtube.com/watch?v=lJu5xwbGgRk) by the Computerphile YouTube channel that I encourage you to watch.  
 
 First check that git is installed. If not, the easiest way to install git on a mac is probably to go ahead and install the XCode Command Line Tools. If the following command returns an error, you may be prompted to install the package after which git will be ready to use.  
 
@@ -99,11 +99,13 @@ First check that git is installed. If not, the easiest way to install git on a m
 
   `git clone git@github.com:yourUsername/hello-world.git`  
 
-  This will create a new folder in your current directory called hello-world which contains your README.md. Before cloning, you may wish to navigate to the directory where you want the hello-world repo to land. In any case, we're now ready to work with our project locally. This is especially useful when you prefer to work with files in your own programming environment and later push changes to the remote repo over SSH without having to visit github in the browser. The next few steps are meant to cover a general workflow for using git that can later be applied to more complex scenarios. First, while we're in the terminal open the README.md with a text editor of your choice, and make a change like adding a new line or paragraph to the body. Save and quit the editor.  
+  This will create a new folder in your current directory called hello-world which contains your README.md. Before cloning, you may wish to navigate to the directory where you want the hello-world repo to land. In any case, we're now ready to work with our project locally. This is especially useful when you prefer to work with files in your own programming environment and later push changes to the remote repo over SSH without having to visit github in the browser. The next few steps are meant to cover a general workflow for using git that can later be applied to more complex scenarios.  
 
-  What have we done? We now have a copy of hello-world on our home computer, however our local copy is no longer identical to the remote repo on github due to the change we just made. We need to reconcile the two by committing the change to the repo, and in addition, by pushing the update to github. If successful, we will see the changes reflected on the web when we refresh the hello-world repo. In the terminal you should still be in the hello-world directory. Running `git status` will inform us that the README is changed but not yet staged for making commits. So let's add the file to be staged.  
+First, while we're in the terminal open the README.md with a text editor of your choice, and make a change like adding a new line or paragraph to the body. Save and quit the editor.  
 
-  `git add README.md`
+  What have we done? We now have a copy of hello-world on our home computer, however our local copy is no longer identical to the remote repo on github due to the change we just made. We need to reconcile the two by committing the change to the repo and pushing it up to github. If successful, we will see the changes reflected on the web when we refresh the hello-world repo. In the terminal you should still be in the hello-world directory. Running `git status` will inform us that the README is changed but not yet staged for making commits. So let's add the file to be staged.  
+
+  `git add README.md` or  
 
   `git add .` (note the '.') will accomplish the same thing by adding all the files in the present directory to git's staging area. Now we're ready to commit.  
 
@@ -129,7 +131,7 @@ First check that git is installed. If not, the easiest way to install git on a m
 
   The diff notation tells us we're looking at line 1 on the -old (main) file containing 3 lines, alongside the +new (feature) file also beginning at line 1 and containing 5 lines (yours may look different). If we are ready to move forward we can accept the PR and merge the changes into main. Once complete it is typical to delete the feature branch now that changes have been merged.  
    
-Here is a [git cheat sheet](#https://training.github.com/downloads/github-git-cheat-sheet/) of essential git commands.  
+Here is a [git cheat sheet](https://training.github.com/downloads/github-git-cheat-sheet/) of essential git commands.  
 
   CHALLENGE: Sometimes when working on another branch we may wish to incorporate recent changes made on the master branch in order to keep our branch current. Normally a simple 'git pull' would bring the local repo up to date with the remote repo, but for this challenge, we first want to pull changes from the main branch down to our local feature branch, and then proceed to merge the two as in the previous example. To do this, create a feature branch from the terminal like before and make changes. Then go back to gitub on the web and make an edit to the main branch. How would you go about pulling the change from main to your feature branch while retaining the work you've done on feature?  
 
@@ -143,14 +145,14 @@ In FOSS everyone can have a voice, and often it is the feedback from users that 
   
 CHALLENGE QUIZ: Carol and Dave are collaborating on writing a README.md for a shared repository. They each pull the most recent update to their personal laptops. Dave works on main while Carol creates a new branch. Dave commits a change to line 5 of the README.md and pushes it to the remote repo. The next day Carol wants to pull down the latest update to main before committing her changes. On Carol's branch she makes a different change to line 5 than Dave made. She goes to merge her branch with the main branch unaware that line 5 contains conflicting changes. How will git resolve the merge?  
 
-a) Dave's commit stays, as his came first
-b) Carol's commit stays, as hers is the most recent
-c) Both are kept, but Carol's commit shifts down 1 line
+a) Dave's commit stays, as his came first  
+b) Carol's commit stays, as hers is the most recent  
+c) Both are kept, but Carol's commit shifts down 1 line  
 d) Depends, requires human intervention  
 
 CHALLENGE: See something in this guide that could use improvement? Fork this project, ValuedMammal/Hello-github-walkthrough, containing this README.md file. Make an edit in your new forked repo, commit the change, and finally open a PR proposing to merge the change into the base. Remember to use descriptive commit messages and keep changes discrete and self-contained rather than cramming a bunch into one PR. Magic can happen when we collaborate.  
 
-I want to acknowledge that this guide draws on many existing resources one of which is a [popular video tutorial](#https://www.youtube.com/watch?v=RGOj5yH7evk&t=3389s) starring [@gwenf](#https://github.com/gwenf) and presented by the freeCodeCamp YouTube channel.  
+I want to acknowledge that this guide draws on many existing resources one of which is a [popular video tutorial](https://www.youtube.com/watch?v=RGOj5yH7evk&t=3389s) starring [@gwenf](https://github.com/gwenf) and presented by the freeCodeCamp YouTube channel.  
 
 ## 6. [Stay Involved](#social)
 
@@ -158,5 +160,7 @@ You should now be able to start a meaningful discussion next time you have an is
 
 Manage your notifications in a smart way, and make your inbox work for you. Only allow alerts or push notifications for events you are actively tracking. If you subscribe to everyone and everything, then your inbox will become unwieldy and less productive. Discover projects and people related to topics that interest you. Join organizations, get job roles, or get sponsored on Github.  
 
-Also check out gists where you can share content like blogs, config files, and code snippets. Any more suggestions, let me know.
+Also check out [gists](https://gist.github.com/) where you can share content like blogs, config files, and code snippets. Any more suggestions, let me know.  
+
+@valuedmammal on twitter
   
